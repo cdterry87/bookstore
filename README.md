@@ -13,6 +13,10 @@
 ```
 ./bookstore Great Expectations
 ```
+or
+```
+php bookstore Great Expectations
+```
 
 Note: If you receive a permissions error, change the permissions with the following command:
 
