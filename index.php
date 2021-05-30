@@ -4,6 +4,7 @@ require_once("./classes/Store.php");
 $store = new Store("catalog");
 $products = $store->getProducts();
 
+$search = '';
 $searchError = false;
 if (isset($_POST["search"])) {
   $search = !empty($_POST["search"]) ? trim($_POST["search"]) : null;
