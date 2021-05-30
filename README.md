@@ -11,17 +11,19 @@
 ## To run from the command line, type:
 
 ```
-./bookstore Great Expectations
+./search Great Expectations
 ```
+
 or
+
 ```
-php bookstore Great Expectations
+php search Great Expectations
 ```
 
 Note: If you receive a permissions error, change the permissions with the following command:
 
 ```
-chmod +x bookstore
+chmod +x search
 ```
 
-Search for products by Title
+The search command line app allows you to search for products by Title
