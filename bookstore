@@ -1,0 +1,24 @@
+#!/usr/bin/php
+<?php
+
+if (php_sapi_name() !== "cli") {
+  exit;
+}
+
+require_once("./classes/Store.php");
+
+$store = new Store("catalog");
+$products = $store->getProducts();
+
+if (isset($argv) && !empty($argv)) {
+  $search = implode(" ", array_slice($argv, 1));
+  $product = $store->searchProduct($search);
+
+  if ($product) {
+    foreach($product as $key => $value) {
+      print(ucfirst($key) . ": " . $value . "\n");
+    }
+  } else {
+    print("Product Not Found. Please try again.");
+  }
+}
