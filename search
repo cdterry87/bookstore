@@ -5,14 +5,21 @@ if (php_sapi_name() !== "cli") {
   exit;
 }
 
+define("TYPES", ["title", "author", "publisher", "isbn"]); 
+
 require_once("./classes/Store.php");
 
 $store = new Store("catalog");
 $products = $store->getProducts();
 
+
 if (isset($argv) && !empty($argv)) {
   $search = implode(" ", array_slice($argv, 1));
-  $product = $store->searchProduct($search);
+  foreach(TYPES as $type) {
+    $product = $store->searchProduct($search, $type);
+
+    if ($product) break;
+  }
 
   if ($product) {
     foreach($product as $key => $value) {

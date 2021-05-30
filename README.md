@@ -26,4 +26,4 @@ Note: If you receive a permissions error, change the permissions with the follow
 chmod +x search
 ```
 
-The search command line app allows you to search for products by Title
+Using the command line search, you may search by Title, Author, Publisher, or ISBN
