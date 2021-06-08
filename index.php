@@ -9,7 +9,7 @@ $searchError = false;
 if (isset($_POST["search"])) {
   $search = trim($_POST["search"]);
   if ($search) {
-    $type = isset($_POST["type"]) && !empty($_POST["type"]) ? trim($_POST["type"]) : "title";
+    $type = trim($_POST["type"]) ?? "title";
     $foundProduct = $store->searchProduct($search, $type);
   } else {
     $searchError = true;
