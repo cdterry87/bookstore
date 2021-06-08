@@ -8,18 +8,21 @@ class Store {
     $this->getProductsByDirectory($dir);
   }
 
-  public function getProducts()
+  public function getProducts() : array
   {
     return $this->products;
   }
 
-  public function searchProduct($criteria, $key="title")
+  public function searchProducts($criteria, $key="title") : array
   {
-    $productKey = array_search(strtolower($criteria), array_map("strtolower", array_column($this->products, $key)));
-    if (false !== $productKey) {
-      return $this->products[$productKey];
+    $foundProducts = [];
+    $foundIndexes = array_keys(array_map("strtolower", array_column($this->products, $key)), strtolower($criteria), true);
+
+    foreach($foundIndexes as $index) {
+      $foundProducts[] = $this->products[$index];
     }
-    return false;
+    
+    return $foundProducts;
   }
 
   protected function getProductsByDirectory($dir, &$products = [])

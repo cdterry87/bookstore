@@ -16,7 +16,7 @@ $products = $store->getProducts();
 if (isset($argv) && !empty($argv)) {
   $search = implode(" ", array_slice($argv, 1));
   foreach(TYPES as $type) {
-    $product = $store->searchProduct($search, $type);
+    $product = $store->searchProducts($search, $type);
 
     if ($product) break;
   }
