@@ -10,7 +10,7 @@ if (isset($_POST["search"])) {
   $search = trim($_POST["search"]);
   if ($search) {
     $type = trim($_POST["type"]) ?? "title";
-    $foundProduct = $store->searchProduct($search, $type);
+    $foundProducts = $store->searchProducts($search, $type);
   } else {
     $searchError = true;
   }
@@ -24,7 +24,7 @@ if (isset($_POST["search"])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Book Store</title>
   <style>
-    body{font-family:sans-serif}a{text-decoration:none;color:inherit}.button,.input{border:solid 1px #000;padding:10px 20px}.v-margin{margin:30px 0}.container{text-align:center}.list{padding:0;list-style:none}.list li{margin:15px 0}.card{padding: 30px;border: solid 1px #000;width:280px;margin: 0 auto;}.error{color: red;}
+    body{font-family:sans-serif}a{text-decoration:none;color:inherit}.button,.input{border:solid 1px #000;padding:10px 20px}.v-margin{margin:30px 0}.container{text-align:center}.list{padding:0;list-style:none}.list li{margin:15px 0}.card{padding: 30px;border: solid 1px #000;width:280px;margin: 15px auto;}.error{color: red;}
   </style>
 </head>
 <body>
@@ -53,13 +53,15 @@ if (isset($_POST["search"])) {
     </section>
     <section class="content">
       <?php if($search): ?>
-        <?php if($foundProduct): ?>
-          <div class="card">
-            <h3><?= $foundProduct["title"] ?></h3>
-            <p>Written by <?= $foundProduct["author"] ?></p>
-            <p>Published by <?= $foundProduct["publisher"] ?></p>
-            <p>ISBN: <?= $foundProduct["isbn"] ?></p>
-          </div>
+        <?php if($foundProducts): ?>
+          <?php foreach($foundProducts as $product): extract($product) ?>
+            <div class="card">
+              <h3><?= $title ?></h3>
+              <p>Written by <?= $author ?></p>
+              <p>Published by <?= $publisher ?></p>
+              <p>ISBN: <?= $isbn ?></p>
+            </div>
+          <?php endforeach; ?>
         <?php else: ?>
           <p>Product Not Found. Please try again.</p>
         <?php endif; ?>
