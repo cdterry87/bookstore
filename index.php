@@ -54,7 +54,7 @@ if (isset($_POST["search"])) {
     <section class="content">
       <?php if($search): ?>
         <?php if($foundProducts): ?>
-          <?php foreach($foundProducts as $product): extract($product) ?>
+          <?php foreach($foundProducts as ['title' => $title, 'author' => $author, 'publisher' => $publisher, 'isbn' => $isbn]): ?>
             <div class="card">
               <h3><?= $title ?></h3>
               <p>Written by <?= $author ?></p>
