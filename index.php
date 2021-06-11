@@ -7,7 +7,7 @@ $products = $store->getProducts();
 $search = "";
 $searchError = false;
 if (isset($_POST["search"])) {
-  $search = trim($_POST["search"]);
+  $search = trim(htmlspecialchars($_POST["search"]));
   if ($search) {
     $type = trim($_POST["type"]) ?? "title";
     $foundProducts = $store->searchProducts($search, $type);
